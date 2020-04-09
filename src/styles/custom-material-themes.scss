@@ -1,0 +1,232 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+// Defaults
+$primary: mat-palette($mat-indigo);
+$accent: mat-palette($mat-pink, A200, A100, A400);
+$warn: mat-palette($mat-red);
+$theme: mat-light-theme($primary, $accent, $warn);
+
+.background-primary {
+  background-color: mat-color($primary) !important;
+  color: $light-primary-text;
+}
+
+@include angular-material-theme($theme);
+
+// Light Indigo Theme (Default)
+.light-indigo-theme {
+  $light-indigo-primary: mat-palette($mat-indigo);
+  $light-indigo-accent: mat-palette($mat-pink, A200, A100, A400);
+  $light-indigo-warn: mat-palette($mat-red);
+  $light-indigo-theme: mat-light-theme($light-indigo-primary, $light-indigo-accent, $light-indigo-warn);
+
+  .background-primary {
+    background-color: mat-color($light-indigo-primary) !important;
+  }
+
+  @include angular-material-theme($light-indigo-theme);
+}
+
+// Palettes for Crypto Theme
+$palette-crypto-blue: (
+  50: #19c8f8,
+  100: #19beee,
+  200: #19b4e4,
+  300: #19aada,
+  400: #19a0d0,
+  500: #1997c6,
+  600: #1792bc,
+  700: #1788b2,
+  800: #177ea8,
+  900: #17749e,
+  A100: #19bcee,
+  A200: #19b5e4,
+  A400: #1997c6,
+  A700: #197ea8,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+$palette-crypto-grey: (
+  50: #d9deed,
+  100: #c5cad9,
+  200: #a7acbb,
+  300: #898e9d,
+  400: #616675,
+  500: #434857,
+  600: #3a3f4d,
+  700: #323643,
+  800: #292c39,
+  900: #212330,
+  A100: #ffffff,
+  A200: #eeeeee,
+  A400: #bdbdbd,
+  A700: #616161,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $dark-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $light-primary-text,
+  )
+);
+// Light Crypto Theme
+.light-crypto-theme {
+  $light-crypto-primary: mat-palette($palette-crypto-blue);
+  $light-crypto-accent: mat-palette($mat-amber, A200, A400);
+  $light-crypto-warn: mat-palette($mat-red);
+  $light-crypto-theme: mat-light-theme($light-crypto-primary, $light-crypto-accent, $light-crypto-warn);
+  .background-primary {
+    background-color: mat-color($light-crypto-primary) !important;
+  }
+  @include angular-material-theme($light-crypto-theme);
+}
+
+// Dark Crypto Theme
+.dark-crypto-theme {
+  $dark-crypto-background: (
+    status-bar: black,
+    app-bar:    map_get($palette-crypto-grey, 500),
+    background: #252830,
+    hover:      rgba(white, 0.04),
+    card:       map_get($palette-crypto-grey, 500),
+    dialog:     map_get($palette-crypto-grey, 500),
+    disabled-button: rgba(white, 0.12),
+    raised-button: map-get($palette-crypto-grey, 600),
+    focused-button: $light-focused,
+    selected-button: map_get($palette-crypto-grey, 700),
+    selected-disabled-button: map_get($palette-crypto-grey, 500),
+    disabled-button-toggle: black,
+    unselected-chip: map_get($palette-crypto-grey, 400),
+    disabled-list-option: black,
+    tooltip: map_get($palette-crypto-grey, 400),
+  );
+
+  $dark-crypto-foreground: (
+    base:              white,
+    divider:           $light-dividers,
+    dividers:          $light-dividers,
+    disabled:          $light-disabled-text,
+    disabled-button:   rgba(white, 0.3),
+    disabled-text:     $light-disabled-text,
+    elevation:         black,
+    hint-text:         $light-disabled-text,
+    secondary-text:    $light-secondary-text,
+    icon:              white,
+    icons:             white,
+    text:              white,
+    slider-min:        white,
+    slider-off:        rgba(white, 0.3),
+    slider-off-active: rgba(white, 0.3),
+  );
+
+  // instead of creating a theme with mat-dark-theme like a sane person,
+  // we will create our own theme-creating function that lets us apply our own foreground and background palettes.
+  @function create-dark-crypto-theme($primary, $accent, $warn: mat-palette($mat-red)) {
+    @return (
+      primary: $primary,
+      accent: $accent,
+      warn: $warn,
+      is-dark: true,
+      foreground: $dark-crypto-foreground,
+      background: $dark-crypto-background,
+    );
+  }
+
+  $dark-crypto-primary: mat-palette($palette-crypto-blue);
+  $dark-crypto-accent: mat-palette($mat-blue-grey);
+  $dark-crypto-warn: mat-palette($mat-red);
+
+  $dark-crypto-theme: create-dark-crypto-theme($dark-crypto-primary, $dark-crypto-accent, $dark-crypto-warn);
+
+  .background-primary {
+    background-color: mat-color($dark-crypto-primary) !important;
+  }
+
+  @include angular-material-theme($dark-crypto-theme);
+}
+
+// Dark Yellow Theme
+.dark-yellow-theme {
+  color: $light-primary-text;
+  $dark-yellow-primary: mat-palette($mat-yellow);
+  $dark-yellow-accent: mat-palette($mat-amber, A400, A100, A700);
+  $dark-yellow-warn: mat-palette($mat-red);
+  $dark-yellow-theme: mat-dark-theme($dark-yellow-primary, $dark-yellow-accent, $dark-yellow-warn);
+
+  .background-primary {
+    background-color: mat-color($dark-yellow-primary) !important;
+    color: $dark-primary-text;
+  }
+
+  @include angular-material-theme($dark-yellow-theme);
+}
+
+// Purple Theme
+.light-purple-theme {
+  color: $dark-primary-text;
+  $light-purple-primary: mat-palette($mat-deep-purple);
+  $light-purple-accent: mat-palette($mat-amber, A400, A100, A700);
+  $light-purple-warn: mat-palette($mat-red);
+  $light-purple-theme: mat-light-theme($light-purple-primary, $light-purple-accent, $light-purple-warn);
+
+  .background-primary {
+    background-color: mat-color($light-purple-primary) !important;
+  }
+
+  @include  angular-material-theme($light-purple-theme);
+}
+
+// Dark Purple Theme
+.dark-purple-theme {
+  color: $light-primary-text;
+  $dark-purple-primary: mat-palette($mat-purple);
+  $dark-purple-accent: mat-palette($mat-green, A200);
+  $dark-purple-warn: mat-palette($mat-red);
+  $dark-purple-theme: mat-dark-theme($dark-purple-primary, $dark-purple-accent, $dark-purple-warn);
+
+  .background-primary {
+    background-color: mat-color($dark-purple-primary) !important;
+  }
+
+  @include  angular-material-theme($dark-purple-theme);
+}
+
+// Dark Pink Theme
+.dark-pink-theme {
+  color: $light-primary-text;
+  $dark-pink-primary: mat-palette($mat-pink);
+  $dark-pink-accent: mat-palette($mat-blue-grey);
+  $dark-pink-warn: mat-palette($mat-red);
+  $dark-pink-theme: mat-dark-theme($dark-pink-primary, $dark-pink-accent, $dark-pink-warn);
+
+  .background-primary {
+    background-color: mat-color($dark-pink-primary) !important;
+  }
+
+  @include  angular-material-theme($dark-pink-theme);
+}
+

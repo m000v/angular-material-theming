@@ -1,0 +1,260 @@
+<div [ngClass]="theme" fxFill fxLayout="column">
+  <div class="mat-app-background" fxLayoutGap="2%" fxFill>
+    <mat-sidenav-container class="container">
+      <mat-sidenav #sidenav [(opened)]="opened" [mode]="over" class="bottom-to-top">
+        <div class="py-3 background-primary" fxLayout="column"
+             fxLayoutAlign="center center"
+             fxLayoutGap="7px">
+          <div>
+            <a href="#">
+              <img class="circle" src="{{ userImage}}" width="100">
+            </a>
+          </div>
+          <div>
+            <a>
+              <span class="lead">{{ userName }}</span>
+            </a>
+          </div>
+          <div>
+            <a>
+              <span class="">{{ userEmail }}</span>
+            </a>
+          </div>
+        </div>
+        <div class="mt-3">
+          <mat-nav-list>
+            <mat-list-item routerLink=".">
+              <button mat-icon-button>
+                <mat-icon>home</mat-icon>
+              </button>
+              <span style="font-size: 15px" class="ml-2">Homepage</span>
+            </mat-list-item>
+          </mat-nav-list>
+
+          <mat-accordion multi="true" [displayMode]="displayMode">
+            <mat-expansion-panel class="no-shadow" expanded>
+              <mat-expansion-panel-header fxLayout="row" [expandedHeight]="expandHeight"
+                                          [collapsedHeight]="collapseHeight">
+                <mat-panel-title>
+                  <mat-icon>layers</mat-icon>
+                  <span class="ml-3" style="font-size: 15px">Expanded panel</span>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <mat-nav-list class="ml-0" dense>
+                <mat-list-item>
+                  <button mat-icon-button class="mr-3">
+                    <mat-icon>calendar_today</mat-icon>
+                  </button>
+                  <a href="#">Example 1</a>
+                </mat-list-item>
+                <mat-list-item>
+                  <button mat-icon-button class="mr-3">
+                    <mat-icon>business_center</mat-icon>
+                  </button>
+                  <a href="#">Example 2</a>
+                </mat-list-item>
+                <mat-list-item>
+                  <button mat-icon-button class="mr-3">
+                    <mat-icon>recent_actors</mat-icon>
+                  </button>
+                  <a href="#">Example 3</a>
+                </mat-list-item>
+                <mat-list-item>
+                  <button mat-icon-button class="mr-3">
+                    <mat-icon>
+                      forum
+                    </mat-icon>
+                  </button>
+                  <a href="#">Example 4</a>
+                </mat-list-item>
+              </mat-nav-list>
+
+            </mat-expansion-panel>
+
+            <mat-expansion-panel class="no-shadow my-0">
+              <mat-expansion-panel-header fxLayout="row" [expandedHeight]="expandHeight"
+                                          [collapsedHeight]="collapseHeight">
+                <mat-panel-title>
+                  <mat-icon>account_tree</mat-icon>
+                  <span class="ml-3" style="font-size: 15px">Collapsed panel</span>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-nav-list class="ml-0" dense>
+                <mat-list-item>
+                  <button mat-icon-button class="mr-3">
+                    <mat-icon>
+                      cloud
+                    </mat-icon>
+                  </button>
+                  <a href="#">Example 5</a>
+                </mat-list-item>
+                <mat-list-item>
+                  <button mat-icon-button class="mr-3">
+                    <mat-icon>
+                      show_chart
+                    </mat-icon>
+                  </button>
+                  <a href="#">Example 6</a>
+                </mat-list-item>
+                <mat-list-item>
+                  <button mat-icon-button class="mr-3">
+                    <mat-icon>
+                      account_balance_wallet
+                    </mat-icon>
+                  </button>
+                  <a href="#">Example 7</a>
+                </mat-list-item>
+                <mat-list-item>
+                  <button mat-icon-button class="mr-3">
+                    <mat-icon>
+                      supervisor_account
+                    </mat-icon>
+                  </button>
+                  <a href="#">Example 8</a>
+                </mat-list-item>
+              </mat-nav-list>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </mat-sidenav>
+
+      <mat-sidenav-content>
+        <app-toolbar [sidenav]="sidenav"></app-toolbar>
+        <div style="margin: 2% auto; width: 96%">
+          <router-outlet></router-outlet>
+          <div fxLayout="column" fxLayoutGap="2%" fxFlexAlign="center">
+            <h1>Example</h1>
+            <mat-card fxLayout="column" fxLayoutGap="2%">
+              <div fxLayout="row wrap">
+                <mat-form-field>
+                  <mat-label>Choose a date</mat-label>
+                  <input matInput [matDatepicker]="picker" autocomplete="off">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div fxLayout="row wrap">
+                <mat-radio-group aria-label="Select an option">
+                  <mat-radio-button value="1">Option 1</mat-radio-button>
+                  <mat-radio-button value="2">Option 2</mat-radio-button>
+                </mat-radio-group>
+              </div>
+              <div fxLayout="row wrap">
+                <mat-checkbox>Check me!</mat-checkbox>
+              </div>
+              <div fxLayout="row wrap">
+                <h4>Basic mat-select</h4>
+                <mat-form-field>
+                  <mat-label>Favorite food</mat-label>
+                  <mat-select>
+                    <mat-option>
+                      apple
+                    </mat-option>
+                    <mat-option>
+                      burger
+                    </mat-option>
+                    <mat-option>
+                      orange
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+              </div>
+
+              <h3>Basic Buttons</h3>
+              <div class="example-button-row">
+                <button mat-button>Basic</button>
+                <button mat-button color="primary">Primary</button>
+                <button mat-button color="accent">Accent</button>
+                <button mat-button color="warn">Warn</button>
+                <button mat-button disabled>Disabled</button>
+                <a mat-button routerLink=".">Link</a>
+              </div>
+
+              <h3>Raised Buttons</h3>
+              <div class="example-button-row">
+                <button mat-raised-button>Basic</button>
+                <button mat-raised-button color="primary">Primary</button>
+                <button mat-raised-button color="accent">Accent</button>
+                <button mat-raised-button color="warn">Warn</button>
+                <button mat-raised-button disabled>Disabled</button>
+                <a mat-raised-button routerLink=".">Link</a>
+              </div>
+
+              <h3>Stroked Buttons</h3>
+              <div class="example-button-row">
+                <button mat-stroked-button>Basic</button>
+                <button mat-stroked-button color="primary">Primary</button>
+                <button mat-stroked-button color="accent">Accent</button>
+                <button mat-stroked-button color="warn">Warn</button>
+                <button mat-stroked-button disabled>Disabled</button>
+                <a mat-stroked-button routerLink=".">Link</a>
+              </div>
+
+              <h3>Flat Buttons</h3>
+              <div class="example-button-row">
+                <button mat-flat-button>Basic</button>
+                <button mat-flat-button color="primary">Primary</button>
+                <button mat-flat-button color="accent">Accent</button>
+                <button mat-flat-button color="warn">Warn</button>
+                <button mat-flat-button disabled>Disabled</button>
+                <a mat-flat-button routerLink=".">Link</a>
+              </div>
+
+              <h3>Icon Buttons</h3>
+              <div class="example-button-row">
+                <button mat-icon-button aria-label="Example icon-button with a heart icon">
+                  <mat-icon>favorite</mat-icon>
+                </button>
+                <button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon">
+                  <mat-icon>favorite</mat-icon>
+                </button>
+                <button mat-icon-button color="accent" aria-label="Example icon-button with a heart icon">
+                  <mat-icon>favorite</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
+                  <mat-icon>favorite</mat-icon>
+                </button>
+                <button mat-icon-button disabled aria-label="Example icon-button with a heart icon">
+                  <mat-icon>favorite</mat-icon>
+                </button>
+              </div>
+
+              <h3>Fab Buttons</h3>
+              <div class="example-button-row">
+                <button mat-fab>Basic</button>
+                <button mat-fab color="primary">Primary</button>
+                <button mat-fab color="accent">Accent</button>
+                <button mat-fab color="warn">Warn</button>
+                <button mat-fab disabled>Disabled</button>
+                <button mat-fab aria-label="Example icon-button with a heart icon">
+                  <mat-icon>favorite</mat-icon>
+                </button>
+                <a mat-fab routerLink=".">Link</a>
+              </div>
+
+              <h3>Mini Fab Buttons</h3>
+              <div class="example-button-row">
+                <button mat-mini-fab>Basic</button>
+                <button mat-mini-fab color="primary">Primary</button>
+                <button mat-mini-fab color="accent">Accent</button>
+                <button mat-mini-fab color="warn">Warn</button>
+                <button mat-mini-fab disabled>Disabled</button>
+                <button mat-mini-fab aria-label="Example icon-button with a heart icon">
+                  <mat-icon>favorite</mat-icon>
+                </button>
+                <a mat-mini-fab routerLink=".">Link</a>
+              </div>
+            </mat-card>
+            <mat-card>
+              <mat-form-field>
+                <input matInput type="text" placeholder="yo" autocomplete="off">
+              </mat-form-field>
+            </mat-card>
+          </div>
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+</div>
